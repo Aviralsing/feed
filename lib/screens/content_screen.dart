@@ -6,7 +6,7 @@ import 'package:video_player/video_player.dart';
 
 class ContentScreen extends StatefulWidget {
   final String src;
-  const ContentScreen({required Key key, required this.src}) : super(key: key);
+  const ContentScreen({required this.src});
 
   @override
   _ContentScreenState createState() => _ContentScreenState();
@@ -23,14 +23,20 @@ class _ContentScreenState extends State<ContentScreen> {
   }
 
   initializePlayer() {
-    _videoPlayerController = VideoPlayerController.network(widget.src);
+    setState(() {
+      _videoPlayerController = VideoPlayerController.network(widget.src);
+    });
+
     _videoPlayerController.initialize().then((value) => {
-          _chewieController = new ChewieController(
-            videoPlayerController: _videoPlayerController,
-            autoPlay: true,
-            showControls: false,
-            looping: true,
-          )
+          setState(() {
+            _chewieController = ChewieController(
+              videoPlayerController: _videoPlayerController,
+              autoPlay: true,
+              showControls: false,
+              looping: true,
+            );
+            _chewieController.autoInitialize;
+          })
         });
   }
 
@@ -46,8 +52,7 @@ class _ContentScreenState extends State<ContentScreen> {
     return Stack(
       fit: StackFit.expand,
       children: [
-        _chewieController != null &&
-                _chewieController.videoPlayerController.value.isInitialized
+        _chewieController.videoPlayerController.value.isInitialized
             ? GestureDetector(
                 onDoubleTap: () {
                   setState(() {
@@ -60,7 +65,7 @@ class _ContentScreenState extends State<ContentScreen> {
               )
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   CircularProgressIndicator(),
                   SizedBox(height: 10),
                   Text('Loading...')

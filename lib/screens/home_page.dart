@@ -4,7 +4,6 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomePage extends StatelessWidget {
   final List<String> videos = [
-    'https://d37gsqxsqw86de.cloudfront.net/abr-output/to-convert.mpd'
     'http://www.exit109.com/~dnn/clips/RW20seconds_1.mp4',
     'http://www.exit109.com/~dnn/clips/RW20seconds_2.mp4',
     'https://assets.mixkit.co/videos/preview/mixkit-young-mother-with-her-little-daughter-decorating-a-christmas-tree-39745-large.mp4',
@@ -15,7 +14,6 @@ class HomePage extends StatelessWidget {
     'https://assets.mixkit.co/videos/preview/mixkit-womans-feet-splashing-in-the-pool-1261-large.mp4',
     'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4'
   ];
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +25,7 @@ class HomePage extends StatelessWidget {
               Swiper(
                 itemBuilder: (BuildContext context, int index) {
                   return ContentScreen(
-                    src: videos[index],
-                    key: _scaffoldKey,
+                    src: videos[index]
                   );
                 },
                 itemCount: videos.length,
