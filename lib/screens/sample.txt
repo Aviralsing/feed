@@ -1,0 +1,8 @@
+Future
+
+Mobile -> Youtube -> List of Videos 
+
+1 + 2 = 3
+3 + 3 = 6
+6 + 4 = 10
+....
